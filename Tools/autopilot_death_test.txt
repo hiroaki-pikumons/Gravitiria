@@ -1,0 +1,10 @@
+# 死亡時にタイマーと Death Count が保持されることの確認用台本
+# 使い方: Gravity.exe -startScene Level3 -autopilot Tools\autopilot_death_test.txt
+# Level3 の最初のレーザー柵の中央へ歩いて意図的に死ぬ → 再読み込み後も Player.log の
+# [GameSession] 行で runTime が戻らず runDeaths が増えることを確認する
+
+[Level3]
+wait 1
+lookat 0 1.5 14
+walk 4
+log should be dead by now

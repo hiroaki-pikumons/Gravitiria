@@ -1,0 +1,25 @@
+# Normalize text to LF so Unity YAML and scripts do not churn between OSes
+* text=auto eol=lf
+
+*.cs text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.py text eol=lf
+*.unity text eol=lf
+*.prefab text eol=lf
+*.asset text eol=lf
+*.mat text eol=lf
+*.meta text eol=lf
+*.shader text eol=lf
+*.cginc text eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.psd binary
+*.wav binary
+*.ttf binary
+*.TTF binary
+*.pdf binary
+*.dll binary

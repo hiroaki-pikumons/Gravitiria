@@ -1,0 +1,62 @@
+# タッチ操作の検証台本（擬似タッチ）。座標は画面に対する 0〜1（左下原点）。
+# 実行: Build\Gravitiria.exe -touchui -autopilot Tools\autopilot_touch_test.txt -capture <dir>
+# 期待: Title でタップ → Tutorial へ。Tutorial で tlog の move=(0,1) → 前進、aim=True & timeScale=0.10、離して gravity が (1,0,0) に、
+#       ポーズボタンで paused=True、再開ボタンで False。
+
+[Title]
+wait 2
+tlog
+tdown 1 0.5 0.5
+wait 0.1
+tup 1
+wait 3
+
+[Tutorial]
+touchui on
+manual
+tlog
+# 仮想スティック: 左側に置いて上へ
+tdown 1 0.2 0.3
+wait 0.1
+tmove 1 0.2 0.42
+wait 0.2
+tlog stick pushed
+wait 1.3
+tup 1
+wait 0.3
+tlog stick released
+# 視点スワイプ（右側）
+tdown 2 0.7 0.5
+wait 0.1
+tmove 2 0.8 0.5
+wait 0.1
+tlog after swipe
+tup 2
+wait 0.3
+# 右の壁を狙って、重力ボタン長押し → 離す
+lookat 30 1.5 6
+wait 0.2
+tbutton 3 gravity
+wait 0.5
+tlog holding gravity
+tup 3
+wait 0.8
+tlog after release
+# ポーズ → 再開
+tbutton 4 pause
+wait 0.2
+tup 4
+wait 0.3
+tlog paused
+tbutton 5 resume
+wait 0.2
+tup 5
+wait 0.3
+tlog resumed
+# 右側をタップ（字幕を閉じる / 決定）
+tdown 6 0.75 0.6
+wait 0.1
+tup 6
+wait 0.3
+tlog tapped
+log touch test end

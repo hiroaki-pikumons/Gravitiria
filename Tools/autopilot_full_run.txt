@@ -1,0 +1,272 @@
+# 自動プレイ台本：Title → Tutorial → Level1 → … → Level5 → Ending → Title
+# 使い方: Gravity.exe -autopilot Tools\autopilot_full_run.txt -capture <スクショ出力先>
+# コマンド: lookat x y z / walk 秒 [横 前] / flip / wait 秒 / log 文 / startgame / continue
+
+[Title]
+wait 2
+startgame
+wait 3
+
+[Tutorial]
+lookat 0 1.5 44.5
+walk 4
+space
+walk 5.5
+log tutorial end
+
+[Level1]
+# Hiroaki 版: 出口はスタートの真下（床の裏）。背面の開口から出て後ろの縁から落ち、床の裏へ反転して戻る
+lookat 0 1.5 -20
+walk 4.6 0 1
+wait 0.5
+lookat 0 -0.5 -14
+flip
+wait 0.8
+lookat 0 -2 -5
+walk 2.5 0 1
+wait 1.0
+lookat -0.6 -2 3
+walk 2.6 0 1
+log level1 end
+
+[Level2]
+# Hiroaki 版: 壁の縦柱を高さ違いの隙間で縫う（z=31 は y≈9、z=34 は下、z=37 は y≈19）。
+# z=40 は全面封鎖なので手前で天井へ。天井は z=49 で封鎖されるので手前で壁に戻り、z=55 で降りて z=56.5 を下で抜け、天井へ上がって出口。
+lookat 0 1.5 14
+walk 2.6 0 1
+lookat 9.5 1.5 30
+flip
+wait 2.5
+lookat 8.5 1.5 60
+walk 3.3 0 1
+lookat 8.5 100 29.2
+walk 1.5 0 1
+lookat 8.5 9 60
+walk 0.62 0 1
+lookat 8.5 -100 32.3
+walk 1.5 0 1
+lookat 8.5 1.5 60
+walk 0.64 0 1
+lookat 8.5 100 35.5
+walk 3.7 0 1
+lookat 8.5 20 60
+walk 0.62 0 1
+lookat 0 29.5 45
+flip
+wait 2.2
+lookat 6 28.5 38.6
+walk 0.5 0 1
+lookat 6 28.5 46.5
+walk 1.6 0 1
+lookat 9.5 28 47
+flip
+wait 1.6
+lookat 8.5 -100 46.75
+walk 0.3 0 1
+lookat 8.5 27 60
+walk 1.71 0 1
+lookat 8.5 -100 55.3
+walk 5.1 0 1
+lookat 8.5 1.5 70
+walk 1.4 0 1
+lookat 0 29.5 70
+flip
+wait 3.2
+lookat 0 28 74.76
+walk 3.3 0 1
+log level2 end
+
+[Level3]
+lookat 6.5 1.5 14
+walk 3.2 0 1
+lookat 6.5 1.5 20
+walk 1.3 0 1
+lookat 0 1.5 26.5
+walk 1.9 0 1
+lookat 0 1.5 60
+walk 3.2 0 1
+lookat -6.5 1.5 44
+walk 1.9 0 1
+lookat -6.5 1.5 70
+walk 7.6 0 1
+lookat 0 1.5 72
+walk 2.8 0 1
+log level3 end
+
+[Level4]
+# 壁を乗り換えたら角から壁の中央へ寄ってから登る（角は隣の壁のレーザー帯に触れる）
+lookat 8 1.5 0
+flip
+wait 2
+lookat 7 100 0
+walk 5.4 0 1
+lookat 0 28.5 8
+flip
+wait 2
+lookat 0 28.5 7
+walk 1.5 0 1
+lookat 0 100 7
+walk 3.4 0 1
+lookat 8 45.5 0
+flip
+wait 2
+lookat 7 45.5 0
+walk 1.5 0 1
+lookat 7 100 0
+walk 2.6 0 1
+lookat 0 58.5 8
+flip
+wait 2
+lookat 0 58.5 7
+walk 1.5 0 1
+lookat 0 100 7
+walk 1.4 0 1
+lookat 0 70 0
+flip
+wait 2.5
+lookat 0 68.5 0
+walk 2 0 1
+log level4 end
+
+[Level5]
+# NOTE (1.0): Stage 5 gained lasers that sweep across the corridor around z=24-26 and a laser on the right wall.
+# This route predates that change and dies there; it needs re-timing against the moving lasers.
+lookat 0 1.5 42
+walk 10.8 0 1
+lookat 9.5 1.5 60
+flip
+wait 2.2
+lookat 8 1.5 100
+walk 6.0 0 1
+lookat 0 29.5 85
+flip
+wait 3.4
+lookat 0 28 92
+walk 5.5 0 1
+lookat 0 28 115
+walk 4.6 0 1
+log level5 end
+
+
+[R1]
+# 床の柵を右→左→右→左で抜け、奥の青ボタン → 天井へ反転 → 天井を戻って出口
+lookat 7 1.5 15
+walk 3.4 0 1
+lookat 7 1.5 20
+walk 1.0 0 1
+lookat -7 1.5 25
+walk 3.0 0 1
+lookat -7 1.5 30
+walk 1.0 0 1
+lookat 7 1.5 35
+walk 3.0 0 1
+lookat 7 1.5 40
+walk 1.0 0 1
+lookat -7 1.5 45
+walk 3.0 0 1
+lookat -7 1.5 50
+walk 1.0 0 1
+lookat 0 1.5 60
+walk 2.6 0 1
+wait 0.5
+lookat 0 13.5 50
+flip
+wait 3
+lookat 0 12 20
+walk 8.6 0 1
+log r1 end
+
+[R2]
+lookat 0 1.5 -20
+walk 1.4 0 1
+wait 0.6
+lookat 0 -0.5 0
+flip
+wait 0.8
+lookat 0 -2 5
+walk 2.5 0 1
+wait 0.5
+lookat 6 -2 10
+walk 2.0 0 1
+lookat 6 -2 16
+walk 1.3 0 1
+lookat -6 -2 24
+walk 3.0 0 1
+lookat -6 -2 28
+walk 0.9 0 1
+lookat 0 -2 38
+walk 2.6 0 1
+log r2 end
+
+[R3]
+lookat 7 1.5 12
+walk 2.8 0 1
+lookat 7 1.5 16
+walk 0.8 0 1
+lookat -7 1.5 20
+walk 2.9 0 1
+lookat -7 1.5 24
+walk 0.8 0 1
+lookat 9.2 1.5 30
+walk 3.5 0 1
+lookat 9.2 1.5 50
+walk 4.0 0 1
+lookat 0 1.5 58
+walk 2.6 0 1
+wait 8
+lookat 0 1.5 64
+walk 1.6 0 1
+log r3 end
+
+[R4]
+lookat 0 1.5 70
+walk 2.6 0 1
+dash
+wait 0.4
+walk 2.2 0 1
+dash
+wait 0.4
+walk 2.2 0 1
+dash
+wait 0.4
+walk 3.2 0 1
+log r4 end
+
+[R5]
+# NOTE (1.0): Remix 5 was rebuilt (longer approach, turret wall, laser corridors, gate grid). This route is for the
+# previous layout and will not reach the goal; it is kept as a template for the new one.
+# 赤い柵を左で抜け、右壁の青ボタンへ反転して押す。砲台の射線（x=0）を横切る時刻と
+# ドローンの巡回（z=14）に重ならないよう待ちを入れてから左へ横断し、後ろの縁から床の裏へ。
+lookat -6 1.5 8
+walk 2.0 0 1
+lookat -6 1.5 20
+walk 2.4 0 1
+lookat 8 5.5 20
+flip
+wait 2.2
+lookat 7 100 20
+walk 1.0 0 1
+wait 0.5
+lookat 0 0.5 20
+flip
+wait 2
+wait 1.0
+lookat -6 1.5 19.5
+walk 2.7 0 1
+wait 1.5
+lookat -6 1.5 -20
+walk 5.3 0 1
+wait 0.5
+lookat -6 -0.5 0
+flip
+wait 0.8
+lookat -6 -2 5
+walk 2.5 0 1
+wait 0.5
+lookat 0 -2 45
+walk 8.6 0 1
+log r5 end
+
+[Ending]
+wait 6
+continue
